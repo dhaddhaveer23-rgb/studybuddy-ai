@@ -1,0 +1,42 @@
+{
+  "name": "StudySession",
+  "type": "object",
+  "properties": {
+    "activity_type": {
+      "type": "string",
+      "enum": [
+        "study",
+        "quiz",
+        "flashcards",
+        "tutor",
+        "homework"
+      ]
+    },
+    "duration_minutes": {
+      "type": "number"
+    },
+    "xp_earned": {
+      "type": "number"
+    },
+    "topic": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "activity_type"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

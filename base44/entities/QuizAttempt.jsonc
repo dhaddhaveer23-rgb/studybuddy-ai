@@ -1,0 +1,62 @@
+{
+  "name": "QuizAttempt",
+  "type": "object",
+  "properties": {
+    "material_id": {
+      "type": "string"
+    },
+    "material_title": {
+      "type": "string"
+    },
+    "quiz_type": {
+      "type": "string",
+      "enum": [
+        "mcq",
+        "true_false",
+        "practice_test",
+        "adaptive"
+      ]
+    },
+    "total_questions": {
+      "type": "number"
+    },
+    "correct": {
+      "type": "number"
+    },
+    "score": {
+      "type": "number"
+    },
+    "weak_topics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "duration_seconds": {
+      "type": "number"
+    },
+    "xp_earned": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "quiz_type",
+    "total_questions",
+    "correct",
+    "score"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

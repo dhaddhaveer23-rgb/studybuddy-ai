@@ -1,0 +1,166 @@
+{
+  "name": "StudyMaterial",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "source_type": {
+      "type": "string",
+      "enum": [
+        "text",
+        "photo",
+        "pdf",
+        "file"
+      ]
+    },
+    "source_content": {
+      "type": "string"
+    },
+    "file_url": {
+      "type": "string"
+    },
+    "grade_level": {
+      "type": "string"
+    },
+    "subject": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "processing",
+        "ready",
+        "failed"
+      ],
+      "default": "processing"
+    },
+    "generated_types": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "simple_notes": {
+      "type": "string"
+    },
+    "detailed_notes": {
+      "type": "string"
+    },
+    "revision_sheet": {
+      "type": "string"
+    },
+    "flashcards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "front": {
+            "type": "string"
+          },
+          "back": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "mcqs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "answer_index": {
+            "type": "number"
+          },
+          "explanation": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "true_false": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "statement": {
+            "type": "string"
+          },
+          "is_true": {
+            "type": "boolean"
+          },
+          "explanation": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "practice_test": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "question": {
+            "type": "string"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "answer_index": {
+            "type": "number"
+          },
+          "explanation": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "topics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "mastery": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "times_studied": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "title"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}
