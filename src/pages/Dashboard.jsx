@@ -6,7 +6,7 @@ import StatCard from '@/components/StatCard';
 import XpBar from '@/components/XpBar';
 import ProgressRing from '@/components/ProgressRing';
 import EmptyState from '@/components/EmptyState';
-import { todayStr, daysBetween, awardXp } from '@/lib/studyUtils';
+import { todayStr, daysBetween, awardXp, ensureProfile } from '@/lib/studyUtils';
 import { Button } from '@/components/ui/button';
 
 export default function Dashboard() {
@@ -39,11 +39,10 @@ export default function Dashboard() {
   const toggleGoal = async (goal) => {
     const done = !goal.done;
     await base44.entities.StudyGoal.update(goal.id, { done, completed: done ? goal.target_count : 0 });
-    if (done) { await awardXp(15); toast(); }
+    if (done) { await awardXp(15); }
     load();
-    if (setProfile) { const u = await base44.auth.me(); const p = await (await import('@/lib/studyUtils')).ensureProfile(u); setProfile(p); }
+    if (setProfile) { const u = await base44.auth.me(); const p = await ensureProfile(u); setProfile(p); }
   };
-  const toast = () => {};
 
   const upcomingExams = (exams || []).filter((e) => new Date(e.exam_date) >= new Date(todayStr())).sort((a, b) => new Date(a.exam_date) - new Date(b.exam_date));
   const readyMaterials = (materials || []).filter((m) => m.status === 'ready');
