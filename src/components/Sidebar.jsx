@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Upload, Library, Sparkles, BarChart3, CalendarClock, CalendarRange, Trophy, Settings, GraduationCap, Moon, Sun } from 'lucide-react';
+import { LayoutDashboard, Upload, Library, Sparkles, BarChart3, CalendarClock, CalendarRange, Trophy, Settings, GraduationCap, Moon, Sun, PenLine, Files, Radar, Swords } from 'lucide-react';
 import { useTheme } from '@/lib/theme';
 import { cn } from '@/lib/utils';
 
@@ -8,6 +8,10 @@ export const NAV_ITEMS = [
   { label: 'Dashboard', path: '/', icon: LayoutDashboard },
   { label: 'Upload', path: '/upload', icon: Upload },
   { label: 'Library', path: '/library', icon: Library },
+  { label: 'Answer Checker', path: '/answer-checker', icon: PenLine },
+  { label: 'Past Papers', path: '/past-papers', icon: Files },
+  { label: 'Weakness Radar', path: '/weakness-radar', icon: Radar },
+  { label: 'Boss Battles', path: '/boss-battles', icon: Swords },
   { label: 'AI Tutor', path: '/tutor', icon: Sparkles },
   { label: 'Progress', path: '/progress', icon: BarChart3 },
   { label: 'Exams', path: '/exams', icon: CalendarClock },

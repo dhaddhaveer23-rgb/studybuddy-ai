@@ -23,6 +23,11 @@ import Exams from '@/pages/Exams';
 import StudyPlanner from '@/pages/StudyPlanner';
 import Leaderboard from '@/pages/Leaderboard';
 import Settings from '@/pages/Settings';
+import AnswerChecker from '@/pages/AnswerChecker';
+import PastPapers from '@/pages/PastPapers';
+import WeaknessRadar from '@/pages/WeaknessRadar';
+import BossBattles from '@/pages/BossBattles';
+import BossArena from '@/pages/BossArena';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -60,6 +65,11 @@ const AuthenticatedApp = () => {
           <Route path="/upload" element={<Upload />} />
           <Route path="/library" element={<Library />} />
           <Route path="/material/:id" element={<StudyMaterialDetail />} />
+          <Route path="/answer-checker" element={<AnswerChecker />} />
+          <Route path="/past-papers" element={<PastPapers />} />
+          <Route path="/weakness-radar" element={<WeaknessRadar />} />
+          <Route path="/boss-battles" element={<BossBattles />} />
+          <Route path="/boss-battle/:id" element={<BossArena />} />
           <Route path="/tutor" element={<AiTutor />} />
           <Route path="/progress" element={<Progress />} />
           <Route path="/exams" element={<Exams />} />

@@ -1,0 +1,80 @@
+{
+  "name": "AnswerCheck",
+  "type": "object",
+  "properties": {
+    "question": {
+      "type": "string"
+    },
+    "material_id": {
+      "type": "string"
+    },
+    "material_title": {
+      "type": "string"
+    },
+    "answer_image_url": {
+      "type": "string"
+    },
+    "answer_text": {
+      "type": "string"
+    },
+    "score": {
+      "type": "number"
+    },
+    "max_score": {
+      "type": "number",
+      "default": 10
+    },
+    "missing_points": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "incorrect_points": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "suggestions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "feedback": {
+      "type": "string"
+    },
+    "topics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "mastery": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "question"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

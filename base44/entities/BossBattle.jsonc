@@ -1,0 +1,110 @@
+{
+  "name": "BossBattle",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "material_id": {
+      "type": "string"
+    },
+    "material_title": {
+      "type": "string"
+    },
+    "levels": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "level": {
+            "type": "number"
+          },
+          "difficulty": {
+            "type": "string"
+          },
+          "questions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "question": {
+                  "type": "string"
+                },
+                "options": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "answer_index": {
+                  "type": "number"
+                },
+                "explanation": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "boss_question": {
+      "type": "object",
+      "properties": {
+        "question": {
+          "type": "string"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "answer_index": {
+          "type": "number"
+        },
+        "explanation": {
+          "type": "string"
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ready",
+        "in_progress",
+        "completed"
+      ],
+      "default": "ready"
+    },
+    "current_level": {
+      "type": "number",
+      "default": 1
+    },
+    "completed_levels": {
+      "type": "number",
+      "default": 0
+    },
+    "xp_earned": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "title"
+  ],
+  "rls": {
+    "read": {
+      "created_by_id": "{{user.id}}"
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "created_by_id": "{{user.id}}"
+    },
+    "delete": {
+      "created_by_id": "{{user.id}}"
+    }
+  }
+}

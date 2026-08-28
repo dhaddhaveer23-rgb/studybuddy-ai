@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Sparkles, Send, Volume2, Loader2, GraduationCap, HelpCircle, Bot, User } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
-import { gradeLevels, awardXp } from '@/lib/studyUtils';
+import { gradeLevels, awardXp, PERSONALITIES, ensureProfile } from '@/lib/studyUtils';
 import { cn } from '@/lib/utils';
 import { toast } from 'react-hot-toast';
 
@@ -14,11 +14,21 @@ export default function AiTutor() {
   const [loading, setLoading] = useState(false);
   const [voice, setVoice] = useState(false);
   const [audio, setAudio] = useState(null);
+  const [personality, setPersonality] = useState('chill');
   const scrollRef = useRef(null);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
   }, [messages, loading]);
+
+  useEffect(() => {
+    base44.auth.me().then((u) => u && ensureProfile(u).then((p) => setPersonality(p.tutor_personality || 'chill'))).catch(() => {});
+  }, []);
+
+  const pickPersonality = async (id) => {
+    setPersonality(id);
+    try { const u = await base44.auth.me(); const p = await ensureProfile(u); await base44.entities.UserProfile.update(p.id, { tutor_personality: id }); } catch (e) {}
+  };
 
   const send = async () => {
     if (!input.trim() || loading) return;
@@ -34,7 +44,8 @@ export default function AiTutor() {
         grade_level: grade,
         mode,
         topic,
-        voice
+        voice,
+        personality
       });
       const reply = res.data?.reply || 'Sorry, I could not generate a response.';
       setMessages([...newMsgs, { role: 'assistant', content: reply }]);
@@ -80,6 +91,16 @@ export default function AiTutor() {
           {gradeLevels().map((g) => <option key={g} value={g}>{g}</option>)}
         </select>
         {mode === 'tutor' && <input value={topic} onChange={(e) => setTopic(e.target.value)} placeholder="Topic (optional)" className="px-3 py-1.5 rounded-lg border border-border bg-card text-xs font-medium focus:outline-none flex-1 min-w-[140px]" />}
+      </div>
+
+      <div className="flex gap-2 overflow-x-auto pb-2 mb-1">
+        {PERSONALITIES.map((p) => (
+          <button key={p.id} onClick={() => pickPersonality(p.id)}
+            className={cn('flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap border transition-all shrink-0',
+              personality === p.id ? 'border-violet-500 bg-violet-50 dark:bg-violet-950/30 text-violet-600 dark:text-violet-400' : 'border-border text-muted-foreground')}>
+            <span>{p.emoji}</span> {p.name}
+          </button>
+        ))}
       </div>
 
       <div ref={scrollRef} className="flex-1 overflow-y-auto rounded-2xl border border-border bg-card p-4 space-y-4 mb-3">

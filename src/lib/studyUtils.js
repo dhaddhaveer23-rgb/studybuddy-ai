@@ -89,3 +89,10 @@ export async function unlockAchievement(key) {
 export function gradeLevels() {
   return ['Elementary', 'Middle School', 'High School', 'College', 'University'];
 }
+
+export const PERSONALITIES = [
+  { id: 'chill', name: 'Chill Friend', emoji: '😎', tagline: 'Relaxed & friendly' },
+  { id: 'strict', name: 'Strict Teacher', emoji: '🧐', tagline: 'Rigorous & precise' },
+  { id: 'motivator', name: 'Motivator', emoji: '🔥', tagline: 'Energetic & uplifting' },
+  { id: 'coach', name: 'Exam Coach', emoji: '🎯', tagline: 'Strategic & results-focused' }
+];

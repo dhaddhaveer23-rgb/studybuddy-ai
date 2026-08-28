@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useOutletContext } from 'react-router-dom';
-import { Flame, Target, CalendarClock, BookOpen, TrendingUp, Award, ArrowRight, Sparkles, Clock, Zap } from 'lucide-react';
+import { Flame, Target, CalendarClock, BookOpen, TrendingUp, Award, ArrowRight, Sparkles, Clock, Zap, PenLine, Files, Radar, Swords } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import StatCard from '@/components/StatCard';
 import XpBar from '@/components/XpBar';
@@ -171,6 +171,25 @@ export default function Dashboard() {
             ))}
           </div>
         )}
+      </div>
+
+      {/* Study tools */}
+      <div className="rounded-2xl border border-border bg-card p-5">
+        <h2 className="font-heading font-bold text-lg mb-4 flex items-center gap-2"><Sparkles className="w-5 h-5 text-violet-500" /> Study Tools</h2>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+          {[
+            { to: '/answer-checker', icon: PenLine, label: 'Answer Checker', desc: 'Grade your answers', color: 'from-violet-500 to-indigo-600' },
+            { to: '/past-papers', icon: Files, label: 'Past Papers', desc: 'Analyze & practice', color: 'from-sky-500 to-blue-600' },
+            { to: '/weakness-radar', icon: Radar, label: 'Weakness Radar', desc: 'See your gaps', color: 'from-rose-500 to-pink-600' },
+            { to: '/boss-battles', icon: Swords, label: 'Boss Battles', desc: 'Challenge a chapter', color: 'from-amber-500 to-orange-600' }
+          ].map((t) => (
+            <Link to={t.to} key={t.to} className="group p-4 rounded-2xl border border-border hover:border-violet-400 hover:shadow-md transition-all">
+              <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${t.color} flex items-center justify-center mb-3 shadow-md`}><t.icon className="w-5 h-5 text-white" /></div>
+              <p className="font-semibold text-sm group-hover:text-violet-600 dark:group-hover:text-violet-400">{t.label}</p>
+              <p className="text-xs text-muted-foreground mt-0.5">{t.desc}</p>
+            </Link>
+          ))}
+        </div>
       </div>
 
       <div className="grid lg:grid-cols-2 gap-6">

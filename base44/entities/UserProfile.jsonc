@@ -36,6 +36,16 @@
     "avg_score": {
       "type": "number",
       "default": 0
+    },
+    "tutor_personality": {
+      "type": "string",
+      "enum": [
+        "chill",
+        "strict",
+        "motivator",
+        "coach"
+      ],
+      "default": "chill"
     }
   },
   "required": [
